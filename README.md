@@ -37,7 +37,7 @@ A lightweight in-browser script that automates alternating swaps between **DUSD*
 Create a bookmark and set its URL to this (one-line) code. Clicking the bookmark on the StandX page will inject and run the script.
 
 ```text
-javascript:(()=>{fetch('https://gist.githubusercontent.com/').catch(()=>alert('For security, host the JS file somewhere you control (e.g., GitHub Pages) and point the bookmarklet to it.'))})();
+javascript:(()=>{const u='https://raw.githubusercontent.com/tyleraz/standx-swap-loop/refs/heads/main/standx-swap-loop.js';fetch(u,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.text()}).then(code=>{console.log('[StandX] Loaded from',u);(0,eval)(code)}).catch(err=>{alert('Failed to load standx-swap-loop.js: '+err);console.error(err);});})();
 ```
 > For safety, **host the JS yourself** (e.g., GitHub Pages, raw.githubusercontent.com). Bookmarklets running third‑party URLs can be risky.
 
